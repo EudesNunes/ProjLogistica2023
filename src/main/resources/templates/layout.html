@@ -22,10 +22,13 @@
                     <a class="nav-link" href="/">Home</a>
                   </li>
                   <li class="nav-item active" sec:authorize="hasAuthority('APPROLE_admin')">
-                    <a class="nav-link" href="/dactes">Cliente</a>
+                    <a class="nav-link" href="/dactes">Dacte</a>
                   </li>
                   <li class="nav-item active">
                     <a class="nav-link" href="/carro">Carro</a>
+                  </li>
+                  <li class="nav-item active" sec:authorize="hasAuthority('APPROLE_admin')">
+                    <a class="nav-link" href="/cliente">Cliente</a>
                   </li>
                 </ul>
             </div>

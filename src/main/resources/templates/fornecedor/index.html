@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head th:include="layout :: htmlhead"></head>
+    <body>
+        <nav th:replace="layout :: menu">(menu)</nav>
+        <main>
+            
+            <h1>Clientes</h1>
+            <hr>
+            <a th:href="@{/fornecedores/novo}" class="btn btn-primary">Novo</a>
+            <table class="table">
+                <tread>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>Produtos</th>
+                        <th></th>
+                    </tr>
+                <tbody>
+                    <tr th:each="umFornecedor : ${listaFornecedores}">
+                        <!-- <td th:text="${umFornecedor.cdFornecedor}"></td>
+                        <td th:text="${umFornecedor.nomeFornecedor}"></td>
+                        <td th:text="${umFornecedor.produtosFornecedor}"></td> -->
+                        <td><a class ="btn btn-primary" th:href="@{'/fornecedores/alterar/' + ${umFornecedor.cdFornecedor}}">Alterar</a><button class="btn btn-danger">Excluir</button></td>
+                    </tr>
+                </tbody>
+                </tread>
+            </table>
+        </main>
+
+        <div class="modal" tabindex="-1" id="modalforn">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Excluir fornecedor</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Ação irreverssivel, continuar ?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                  <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <div th:include="layout :: footer">(footer)</div>
+        <script th:src="@/script.js"></script>
+    </body>
+</html>
