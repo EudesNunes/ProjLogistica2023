@@ -5,11 +5,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
-public class Endereco {
+@Entity()
+public class EnderecoEntrega{
+
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String pais;
     private String estado;
     private String cidade;
@@ -18,7 +19,28 @@ public class Endereco {
     private String cep;
     private String numero;
     private String complemento;
+    private String nomeDestinatario;
+    private String instrucoesEntrega;
 
+    
+    public String getNomeDestinatario() {
+        return nomeDestinatario;
+    }
+    public void setNomeDestinatario(String nomeDestinatario) {
+        this.nomeDestinatario = nomeDestinatario;
+    }
+    public String getInstrucoesEntrega() {
+        return instrucoesEntrega;
+    }
+    public void setInstrucoesEntrega(String instrucoesEntrega) {
+        this.instrucoesEntrega = instrucoesEntrega;
+    }
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
     public String getPais() {
         return pais;
     }
@@ -66,7 +88,8 @@ public class Endereco {
     }
     public void setComplemento(String complemento) {
         this.complemento = complemento;
-    }
-
+    }   
+    
+    
     
 }
