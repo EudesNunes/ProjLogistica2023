@@ -9,4 +9,6 @@ public interface ClienteService {
     List<Cliente> getAll();
 
     void save(Cliente cliente);
+
+    void delete(Cliente cliente);
 }

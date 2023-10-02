@@ -25,6 +25,11 @@ public class DacteServiceImpl implements DacteService {
         repository.save(dacte);
     }
 
+    @Override
+    public void delete(Dacte dacte) {
+        repository.delete(dacte);
+    }
+
     
 
 }

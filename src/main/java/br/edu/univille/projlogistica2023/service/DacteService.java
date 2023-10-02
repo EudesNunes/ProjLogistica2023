@@ -8,4 +8,6 @@ public interface DacteService {
     List<Dacte> getAll();
 
     void save(Dacte dacte);
+
+    void delete(Dacte dacte);
 }

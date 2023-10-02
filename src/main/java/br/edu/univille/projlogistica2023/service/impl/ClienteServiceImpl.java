@@ -25,6 +25,11 @@ public class ClienteServiceImpl implements ClienteService {
         repository.save(cliente);
     }
 
+    @Override
+    public void delete(Cliente cliente) {
+        repository.delete(cliente);
+    }
+
     
 
 }

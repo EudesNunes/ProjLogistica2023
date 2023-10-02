@@ -48,10 +48,18 @@ public class ClienteController {
     @GetMapping("alterar/{cdCliente}")
     public ModelAndView alterar(@PathVariable("cdCliente") Cliente cliente) {
         var listaEnderecoEntrega = enderecoEntregaService.getAll();
-        
+
         ModelAndView modelAndView = new ModelAndView("cliente/form", "cliente", cliente);
         modelAndView.addObject("EnderecosEntrega", listaEnderecoEntrega);
 
         return modelAndView;
     }
+
+    @GetMapping("/remover/{cdCliente}")
+    public ModelAndView remover(
+        @PathVariable("cdCliente") Cliente cliente) {
+            service.delete(cliente);
+        return new ModelAndView("redirect:/clientes");
+    }
+        
 }
