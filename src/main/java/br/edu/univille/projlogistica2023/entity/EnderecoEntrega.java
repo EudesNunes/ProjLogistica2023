@@ -10,7 +10,7 @@ public class EnderecoEntrega{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long cdEnderecoEntrega;
     private String pais;
     private String estado;
     private String cidade;
@@ -35,12 +35,7 @@ public class EnderecoEntrega{
     public void setInstrucoesEntrega(String instrucoesEntrega) {
         this.instrucoesEntrega = instrucoesEntrega;
     }
-    public long getId() {
-        return id;
-    }
-    public void setId(long id) {
-        this.id = id;
-    }
+
     public String getPais() {
         return pais;
     }
@@ -88,6 +83,12 @@ public class EnderecoEntrega{
     }
     public void setComplemento(String complemento) {
         this.complemento = complemento;
+    }
+    public long getCdEnderecoEntrega() {
+        return cdEnderecoEntrega;
+    }
+    public void setCdEnderecoEntrega(long cdEnderecoEntrega) {
+        this.cdEnderecoEntrega = cdEnderecoEntrega;
     }   
     
     

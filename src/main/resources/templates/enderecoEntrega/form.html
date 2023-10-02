@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+  <head th:include="layout :: htmlhead"></head>
+  <body>
+    <nav th:replace="layout :: menu">(menu)</nav>
+    <main class="container">
+      <form
+        th:action="@{/enderecosentrega}"
+        method="POST"
+        th:object="${enderecoEntrega}"
+      >
+        <input type="hidden" th:field="*{cdEnderecoEntrega}" />
+
+        <div class="my-3 form-group">
+          <div class="row">
+            <div class="col">
+              <label for="txtNomeDestinatario">Nome do Destinatario</label>
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{nomeDestinatario}"
+                id="txtNomeDestinatario"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="txtPais">País</label>
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{pais}"
+                id="txtPais"
+              />
+            </div>
+            <div class="col">
+              <label for="txtEstado">Estado</label>
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{estado}"
+                id="txtEstado"
+              />
+            </div>
+            <div class="col">
+              <label for="txtCidade">Cidade</label>
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{cidade}"
+                id="txtCidade"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="txtBairro">Bairro</label>
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{bairro}"
+                id="txtBairro"
+              />
+            </div>
+            <div class="col">
+              <label for="txtRua">Rua</label>
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{rua}"
+                id="txtRua"
+              />
+            </div>
+            <div class="col">
+              <label for="txtCep">CEP</label>
+              <input
+                type="number"
+                class="form-control"
+                th:field="*{cep}"
+                id="txtCep"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="txtNumero">Numero</label>
+              <input
+                type="number"
+                class="form-control"
+                th:field="*{numero}"
+                id="txtNumero"
+              />
+            </div>
+            <div class="col">
+              <label for="txtComplemento">Complemento</label>
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{complemento}"
+                id="txtComplemento"
+              />
+            </div>
+            <div class="col">
+              <label for="txtInstrucoesEntrega">Instruções de Entrega</label>
+              <input
+                type="text"
+                class="form-control"
+                th:field="*{instrucoesEntrega}"
+                id="txtInstrucoesEntrega"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group my-3">
+          <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+      </form>
+    </main>
+    <div th:include="layout :: footer">(footer)</div>
+  </body>
+</html>

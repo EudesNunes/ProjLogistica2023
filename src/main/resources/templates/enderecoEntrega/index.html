@@ -5,49 +5,65 @@
     <nav th:replace="layout :: menu">(menu)</nav>
     <main>
       <div class="container">
-        <h1>Dactes</h1>
+        <h1>Endereço</h1>
         <hr />
-        <a th:href="@{dactes/novo}" class="btn btn-dark">Novo</a>
+        <a th:href="@{enderecosentrega/novo}" class="btn btn-dark">Novo</a>
         <div class="table-responsive">
-        <table class="table table-hover table-bordered my-2" id="tabdactes">
+        <table class="table table-hover table-bordered my-2" id="tabendereco">
           <tread>
             <tr class="table-dark text-center">
               <th>Código</th>
 
-              <th>Numero Dacte</th>
+              <th>Nome Destinatario</th>
 
-              <th>Data Emissao</th>
+              <th>País </th>
 
-              <th>Notas Fiscal</th>
+              <th>Estado</th>
 
+              <th>Ciade</th>
 
+              <th>Bairro</th>
+              
+              <th>Rua</th>
+
+              <th>Cep</th>
+
+              <th>Numero</th>
+
+              <th>Complemento</th>
+
+              <th>Instrucoes de Entrega</th>
+              
               <th>Alterar</th>
 
               <th>Excluir</th>
+
             </tr>
             <tbody>
-              <tr class="text-center" th:each="umDacte : ${listaDactes}">
-                <td th:text="${umDacte.cdDacte}"></td>
-                <td th:text="${umDacte.numeroDacte}"></td>
-                <td th:text="${umDacte.dataEmissao}"></td>
-                <td>
-                  <ul th:if="${umDacte.notasFiscal != null}">
-                      <li th:each="notaFiscal : ${umDacte.notasFiscal}">
-                          <span th:text="${notaFiscal.cdNotaFiscal + ' - ' + notaFiscal.numeroPedido}"></span>
-                      </li>
-                  </ul>
-              </td>
+              <tr class="text-center" th:each="umEndereco : ${listaEnderecoEntrega}">
+                <td th:text="${umEndereco.cdEnderecoEntrega}"></td>
+                <td th:text="${umEndereco.nomeDestinatario}"></td>
+                <td th:text="${umEndereco.pais}"></td>
+                <td th:text="${umEndereco.estado}"></td>
+                <td th:text="${umEndereco.cidade}"></td>
+                <td th:text="${umEndereco.bairro}"></td>
+                <td th:text="${umEndereco.rua}"></td>
+                <td th:text="${umEndereco.cep}"></td>
+                <td th:text="${umEndereco.numero}"></td>
+                <td th:text="${umEndereco.complemento}"></td>
+                <td th:text="${umEndereco.instrucoesEntrega}"></td>
+
                 <td>
                   <a
                     class="btn btn-primary"
-                    th:href="@{'/dactes/alterar/' + ${umDacte.cdDacte}}"
+                    th:href="@{'/enderecosentrega/alterar/' + ${umEndereco.cdEnderecoEntrega}}"
                     >Alterar</a
                   >
                  
                 </td>
                 <td>
                   <button
-                    th:data-id="${umDacte.cdDacte}"
+                    th:data-id="${umEndereco.cdEnderecoEntrega}"
                     class="btn btn-danger js-delete"
                   >
                     Excluir
@@ -57,15 +73,15 @@
             </tbody>
           </tread>
         </table>
-        </div>
+      </div>
       </div>
     </main>
 
-    <div class="modal" tabindex="-1" id="modalDacte">
+    <div class="modal" tabindex="-1" id="modalEndereco">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Excluir Dacte</h5>
+            <h5 class="modal-title">Excluir Endereço</h5>
             <button
               type="button"
               class="btn-close"
@@ -74,7 +90,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <p>Confirma a exclusão do dacte?</p>
+            <p>Confirma a exclusão do endereço?</p>
           </div>
           <div class="modal-footer">
             <button

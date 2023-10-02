@@ -1,7 +1,5 @@
 package br.edu.univille.projlogistica2023.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.univille.projlogistica2023.entity.Fornecedor;
 import br.edu.univille.projlogistica2023.service.FornecedorService;
+import br.edu.univille.projlogistica2023.service.ProdutoService;
 
 
 @Controller
@@ -19,6 +18,8 @@ import br.edu.univille.projlogistica2023.service.FornecedorService;
 public class FornecedorController {
     @Autowired
     private FornecedorService service;
+    @Autowired
+    private ProdutoService produtoService;
     @GetMapping
     public ModelAndView index(){
         var listaFornecedores = service.getAll();
@@ -28,7 +29,11 @@ public class FornecedorController {
     @GetMapping("/novo")
     public ModelAndView novo(){
         var novoFornecedor = new Fornecedor();
-        return new ModelAndView("fornecedor/form","forncedor", novoFornecedor);
+        var ListaProdutos = produtoService.getAll();
+        ModelAndView modelAndView = new ModelAndView("fornecedor/form","fornecedor", novoFornecedor);
+        modelAndView.addObject("ListaProdutos", ListaProdutos);
+
+        return modelAndView;
 
     }
 
@@ -41,7 +46,11 @@ public class FornecedorController {
 
     @GetMapping("/alterar/{id}")
     public ModelAndView alterar(@PathVariable("id") Fornecedor fornecedor){
-        return new ModelAndView("fornecedores/form","forncedor",fornecedor);
+         var ListaProdutos = produtoService.getAll();
+        ModelAndView modelAndView = new ModelAndView("fornecedor/form","fornecedor", fornecedor);
+        modelAndView.addObject("ListaProdutos", ListaProdutos);
+
+        return modelAndView;
 
     }
 }

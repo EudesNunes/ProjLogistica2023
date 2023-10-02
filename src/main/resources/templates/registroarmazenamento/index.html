@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+  <head th:include="layout :: htmlhead"></head>
+  <body>
+    <nav th:replace="layout :: menu">(menu)</nav>
+    <main>
+      <div class="container">
+        <h1>Registro de Armazenamento</h1>
+        <hr />
+        <a th:href="@{registrosarmazenamento/novo}" class="btn btn-dark"
+          >Novo</a
+        >
+        <div class="table-responsive">
+          <table
+            class="table table-hover table-bordered my-2"
+            id="tabregistros"
+          >
+            <tread>
+              <tr class="table-dark text-center">
+                <th>Código</th>
+
+                <th>Data</th>
+
+                <th>Quantidade</th>
+
+                <th>Endereço</th>
+
+                <th>Produto</th>
+
+                <th>Alterar</th>
+
+                <th>Excluir</th>
+              </tr>
+              <tbody>
+                <tr
+                  class="text-center"
+                  th:each="umRegistro : ${listaRegistrosArmazenamento}"
+                >
+                  <td th:text="${umRegistro.cdRegistro}"></td>
+                  <td th:text="${umRegistro.data}"></td>
+                  <td th:text="${umRegistro.quantidade}"></td>
+                  <td th:text="${umRegistro.endereco}"></td>
+                  <td
+                    th:if="${umRegistro.produto != null}"
+                    th:text="${umRegistro.produto.cdProduto + ' - ' + umRegistro.produto.nomeProduto}"
+                  ></td>
+                  <td th:unless="${umRegistro.produto != null}">
+                    Produto não existe
+                  </td>
+                  <td>
+                    <a
+                      class="btn btn-primary"
+                      th:href="@{'/registrosarmazenamento/alterar/' + ${umRegistro.cdRegistro}}"
+                      >Alterar</a
+                    >
+                  </td>
+                  <td>
+                    <button
+                      th:data-id="${umRegistro.cdRegistro}"
+                      class="btn btn-danger js-delete"
+                    >
+                      Excluir
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </tread>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <div class="modal" tabindex="-1" id="modalRegistros">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Excluir Registro de Armazenamento</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>Confirma a exclusão do Registro de Armazenamento?</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Não
+            </button>
+            <button type="button" class="btn btn-primary" id="btnsim">
+              Sim
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div th:include="layout :: footer">(footer)</div>
+    <script th:src="@{/script.js}"></script>
+  </body>
+</html>

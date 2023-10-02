@@ -1,5 +1,6 @@
 package br.edu.univille.projlogistica2023.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -15,8 +16,9 @@ public class Fornecedor {
     private long cdFornecedor;
     private String nomeFornecedor;
     @OneToMany
-    @JoinColumn(name = "id_forncedor")
-    private List<Produto> produtosFornecedor;
+    @JoinColumn(name = "cdFornecedor")
+    private List<Produto> produtosFornecedor = 
+     new ArrayList<>();
     
     public long getCdFornecedor() {
         return cdFornecedor;

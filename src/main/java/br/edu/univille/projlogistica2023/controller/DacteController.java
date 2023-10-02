@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.univille.projlogistica2023.entity.Dacte;
 import br.edu.univille.projlogistica2023.service.DacteService;
+import br.edu.univille.projlogistica2023.service.NotaFiscalService;
 
 @Controller
 @RequestMapping("/dactes")
@@ -17,26 +18,36 @@ public class DacteController {
 
     @Autowired
     private DacteService service;
+    @Autowired
+    private NotaFiscalService notaFiscalService;
+
     @GetMapping
     public ModelAndView index() {
-       
+
         var listaDactes = service.getAll();
-        return new ModelAndView("dacte/index","listaDactes", listaDactes);
+        return new ModelAndView("dacte/index", "listaDactes", listaDactes);
     }
+
     @GetMapping("/novo")
-    public ModelAndView novo(){
+    public ModelAndView novo() {
         var novoDacte = new Dacte();
-        return new ModelAndView ("dacte/form","dacte",novoDacte);
+        var ListaNotaFiscal = notaFiscalService.getAll();
+        ModelAndView modelAndView = new ModelAndView("dacte/form", "dacte", novoDacte);
+        modelAndView.addObject("LNotaFiscal", ListaNotaFiscal);
+        return modelAndView;
     }
 
     @PostMapping
-    public ModelAndView save(Dacte dacte){
+    public ModelAndView save(Dacte dacte) {
         service.save(dacte);
         return new ModelAndView("redirect:/dactes");
     }
 
     @GetMapping("alterar/{cdDacte}")
-    public ModelAndView alterar(@PathVariable("cdDacte") Dacte dacte){
-        return new ModelAndView ("dacte/form","dacte",dacte);
+    public ModelAndView alterar(@PathVariable("cdDacte") Dacte dacte) {
+        var ListaNotaFiscal = notaFiscalService.getAll();
+        ModelAndView modelAndView = new ModelAndView("dacte/form", "dacte", dacte);
+        modelAndView.addObject("LNotaFiscal", ListaNotaFiscal);
+        return modelAndView;
     }
 }
