@@ -17,26 +17,35 @@ public class SituacaoController {
 
     @Autowired
     private SituacaoService service;
+
     @GetMapping
     public ModelAndView index() {
-       
+
         var listaSituacoens = service.getAll();
-        return new ModelAndView("situacao/index","listaSituacoens", listaSituacoens);
+        return new ModelAndView("situacao/index", "listaSituacoens", listaSituacoens);
     }
+
     @GetMapping("/novo")
-    public ModelAndView novo(){
+    public ModelAndView novo() {
         var novoSituacao = new Situacao();
-        return new ModelAndView ("situacao/form","situacao", novoSituacao);
+        return new ModelAndView("situacao/form", "situacao", novoSituacao);
     }
 
     @PostMapping
-    public ModelAndView save(Situacao situacao){
+    public ModelAndView save(Situacao situacao) {
         service.save(situacao);
         return new ModelAndView("redirect:/situacoens");
     }
 
     @GetMapping("alterar/{cdSituacao}")
-    public ModelAndView alterar(@PathVariable("cdSituacao") Situacao situacao){
-        return new ModelAndView ("situacao/form","situacao",situacao);
+    public ModelAndView alterar(@PathVariable("cdSituacao") Situacao situacao) {
+        return new ModelAndView("situacao/form", "situacao", situacao);
+    }
+
+    @GetMapping("/remover/{cdSituacao}")
+    public ModelAndView remover(
+            @PathVariable("cdSituacao") Situacao situacao) {
+        service.delete(situacao);
+        return new ModelAndView("redirect:/registrosarmazenamento");
     }
 }

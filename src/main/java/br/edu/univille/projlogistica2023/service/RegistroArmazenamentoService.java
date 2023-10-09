@@ -9,4 +9,6 @@ public interface RegistroArmazenamentoService {
     List<RegistroArmazenamento> getAll();
 
     void save(RegistroArmazenamento situacao);
+
+    void delete(RegistroArmazenamento registroArmazenamento);
 }

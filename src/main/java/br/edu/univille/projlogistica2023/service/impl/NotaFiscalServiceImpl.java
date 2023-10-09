@@ -25,6 +25,11 @@ public class NotaFiscalServiceImpl implements NotaFiscalService {
         repository.save(notaFiscal);
     }
 
+    @Override
+    public void delete(NotaFiscal notafiscal) {
+        repository.delete(notafiscal);
+    }
+
     
 
 }

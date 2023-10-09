@@ -25,6 +25,11 @@ public class EnderecoEntregaServiceImpl implements EnderecoEntregaService {
         repository.save(enderecoEntrega);
     }
 
+    @Override
+    public void delete(EnderecoEntrega enderecoEntrega) {
+        repository.delete(enderecoEntrega);
+    }
+
     
 
 }

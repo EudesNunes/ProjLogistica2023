@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.edu.univille.projlogistica2023.entity.Cliente;
 import br.edu.univille.projlogistica2023.entity.Dacte;
 import br.edu.univille.projlogistica2023.service.DacteService;
 import br.edu.univille.projlogistica2023.service.NotaFiscalService;

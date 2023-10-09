@@ -17,26 +17,35 @@ public class NotaFiscalController {
 
     @Autowired
     private NotaFiscalService service;
+
     @GetMapping
     public ModelAndView index() {
-       
+
         var listaNotasFiscal = service.getAll();
-        return new ModelAndView("notafiscal/index","listaNotasFiscal", listaNotasFiscal);
+        return new ModelAndView("notafiscal/index", "listaNotasFiscal", listaNotasFiscal);
     }
+
     @GetMapping("/novo")
-    public ModelAndView novo(){
+    public ModelAndView novo() {
         var novoNotaFiscal = new NotaFiscal();
-        return new ModelAndView ("notafiscal/form","notafiscal", novoNotaFiscal);
+        return new ModelAndView("notafiscal/form", "notafiscal", novoNotaFiscal);
     }
 
     @PostMapping
-    public ModelAndView save(NotaFiscal notaFiscal){
+    public ModelAndView save(NotaFiscal notaFiscal) {
         service.save(notaFiscal);
         return new ModelAndView("redirect:/notasfiscal");
     }
 
     @GetMapping("alterar/{cdNotaFiscal}")
-    public ModelAndView alterar(@PathVariable("cdNotaFiscal") NotaFiscal notafiscal){
-        return new ModelAndView ("notafiscal/form","notafiscal",notafiscal);
+    public ModelAndView alterar(@PathVariable("cdNotaFiscal") NotaFiscal notafiscal) {
+        return new ModelAndView("notafiscal/form", "notafiscal", notafiscal);
+    }
+
+    @GetMapping("/remover/{cdNotaFiscal}")
+    public ModelAndView remover(
+            @PathVariable("cdNotaFiscal") NotaFiscal notafiscal) {
+        service.delete(notafiscal);
+        return new ModelAndView("redirect:/itensnota");
     }
 }

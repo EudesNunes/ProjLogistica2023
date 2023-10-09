@@ -31,7 +31,7 @@ $("#tabendereco").on("click", ".js-delete", function () {
 
 $("#tabfornecedor").on("click", ".js-delete", function () {
   let botaoClicado = $(this);
-  mostrarModal(botaoClicado, "#modalfornededor","/fornecedores");
+  mostrarModal(botaoClicado, "#modalfornecedor","/fornecedores");
 });
 
 $("#tabitemnota").on("click", ".js-delete", function () {

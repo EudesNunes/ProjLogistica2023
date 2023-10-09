@@ -8,4 +8,6 @@ public interface FornecedorService {
     List<Fornecedor> getAll();
 
     void save(Fornecedor fornecedor);
+
+    void delete(Fornecedor fornecedor);
 }

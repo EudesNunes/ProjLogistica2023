@@ -17,26 +17,36 @@ public class ItemNotaController {
 
     @Autowired
     private ItemNotaService service;
+
     @GetMapping
     public ModelAndView index() {
-       
+
         var listaItemNota = service.getAll();
-        return new ModelAndView("itemnota/index","listaItemNota", listaItemNota);
+        return new ModelAndView("itemnota/index", "listaItemNota", listaItemNota);
     }
+
     @GetMapping("/novo")
-    public ModelAndView novo(){
+    public ModelAndView novo() {
         var novoItemNota = new ItemNota();
-        return new ModelAndView ("itemnota/form","itemNota", novoItemNota);
+        return new ModelAndView("itemnota/form", "itemNota", novoItemNota);
     }
 
     @PostMapping
-    public ModelAndView save(ItemNota itemNota){
+    public ModelAndView save(ItemNota itemNota) {
         service.save(itemNota);
         return new ModelAndView("redirect:/itensnota");
     }
 
     @GetMapping("alterar/{cdItemNota}")
-    public ModelAndView alterar(@PathVariable("cdItemNota") ItemNota itemNota){
-        return new ModelAndView ("itemnota/form","itemNota",itemNota);
+    public ModelAndView alterar(@PathVariable("cdItemNota") ItemNota itemNota) {
+        return new ModelAndView("itemnota/form", "itemNota", itemNota);
     }
+
+    @GetMapping("/remover/{cdItemNota}")
+    public ModelAndView remover(
+            @PathVariable("cdItemNota") ItemNota itemNota) {
+        service.delete(itemNota);
+        return new ModelAndView("redirect:/itensnota");
+    }
+
 }

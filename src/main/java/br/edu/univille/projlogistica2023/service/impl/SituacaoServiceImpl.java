@@ -24,6 +24,11 @@ public class SituacaoServiceImpl implements SituacaoService {
     public void save(Situacao situacao) {
         repository.save(situacao);
     }
+
+    @Override
+    public void delete(Situacao situacao) {
+        repository.delete(situacao);
+    }
     
 
 }

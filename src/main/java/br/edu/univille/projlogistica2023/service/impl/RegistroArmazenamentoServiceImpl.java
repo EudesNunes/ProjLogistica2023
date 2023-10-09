@@ -27,6 +27,11 @@ public class RegistroArmazenamentoServiceImpl implements RegistroArmazenamentoSe
         repository.save(registroArmazenamento);
     }
 
+    @Override
+    public void delete(RegistroArmazenamento registroArmazenamento) {
+        repository.delete(registroArmazenamento);
+    }
+
     
 
 }

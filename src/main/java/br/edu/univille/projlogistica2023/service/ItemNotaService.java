@@ -9,4 +9,6 @@ public interface ItemNotaService {
     List<ItemNota> getAll();
 
     void save(ItemNota itemNota);
+
+    void delete(ItemNota itemNota);
 }

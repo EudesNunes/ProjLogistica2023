@@ -12,7 +12,6 @@ import br.edu.univille.projlogistica2023.entity.Fornecedor;
 import br.edu.univille.projlogistica2023.service.FornecedorService;
 import br.edu.univille.projlogistica2023.service.ProdutoService;
 
-
 @Controller
 @RequestMapping("/fornecedores")
 public class FornecedorController {
@@ -20,17 +19,18 @@ public class FornecedorController {
     private FornecedorService service;
     @Autowired
     private ProdutoService produtoService;
+
     @GetMapping
-    public ModelAndView index(){
+    public ModelAndView index() {
         var listaFornecedores = service.getAll();
-        return new ModelAndView("fornecedor/index","listaFornecedores", listaFornecedores);
+        return new ModelAndView("fornecedor/index", "listaFornecedores", listaFornecedores);
     }
 
     @GetMapping("/novo")
-    public ModelAndView novo(){
+    public ModelAndView novo() {
         var novoFornecedor = new Fornecedor();
         var ListaProdutos = produtoService.getAll();
-        ModelAndView modelAndView = new ModelAndView("fornecedor/form","fornecedor", novoFornecedor);
+        ModelAndView modelAndView = new ModelAndView("fornecedor/form", "fornecedor", novoFornecedor);
         modelAndView.addObject("ListaProdutos", ListaProdutos);
 
         return modelAndView;
@@ -38,20 +38,26 @@ public class FornecedorController {
     }
 
     @PostMapping
-    public ModelAndView save(Fornecedor fornecedor){
+    public ModelAndView save(Fornecedor fornecedor) {
         service.save(fornecedor);
         return new ModelAndView("redirect:/fornecedores");
 
     }
 
     @GetMapping("/alterar/{id}")
-    public ModelAndView alterar(@PathVariable("id") Fornecedor fornecedor){
-         var ListaProdutos = produtoService.getAll();
-        ModelAndView modelAndView = new ModelAndView("fornecedor/form","fornecedor", fornecedor);
+    public ModelAndView alterar(@PathVariable("id") Fornecedor fornecedor) {
+        var ListaProdutos = produtoService.getAll();
+        ModelAndView modelAndView = new ModelAndView("fornecedor/form", "fornecedor", fornecedor);
         modelAndView.addObject("ListaProdutos", ListaProdutos);
 
         return modelAndView;
 
     }
-}
 
+    @GetMapping("/remover/{cdFornecedor}")
+    public ModelAndView remover(
+            @PathVariable("cdFornecedor") Fornecedor fornecedor) {
+        service.delete(fornecedor);
+        return new ModelAndView("redirect:/fornecedores");
+    }
+}

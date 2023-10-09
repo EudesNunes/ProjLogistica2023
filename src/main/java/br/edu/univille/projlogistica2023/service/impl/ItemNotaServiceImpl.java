@@ -25,6 +25,11 @@ public class ItemNotaServiceImpl implements ItemNotaService {
         repository.save(itemNota);
     }
 
+    @Override
+    public void delete(ItemNota itemNota) {
+        repository.delete(itemNota);
+    }
+
     
 
 }

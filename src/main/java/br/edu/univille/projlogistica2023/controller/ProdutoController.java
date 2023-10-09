@@ -52,4 +52,11 @@ public class ProdutoController {
         return modelAndView;
 
     }
+
+    @GetMapping("/remover/{cdProduto}")
+    public ModelAndView remover(
+            @PathVariable("cdProduto") Produto produto) {
+        service.delete(produto);
+        return new ModelAndView("redirect:/itensnota");
+    }
 }

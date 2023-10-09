@@ -57,4 +57,11 @@ public class RegistroArmazenamentoController {
 
         return modelAndView;
     }
+
+    @GetMapping("/remover/{cdRegistro}")
+    public ModelAndView remover(
+            @PathVariable("cdRegistro") RegistroArmazenamento registroArmazenamento) {
+        service.delete(registroArmazenamento);
+        return new ModelAndView("redirect:/registrosarmazenamento");
+    }
 }

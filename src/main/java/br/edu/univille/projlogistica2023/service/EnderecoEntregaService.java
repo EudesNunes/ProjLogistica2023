@@ -8,4 +8,6 @@ public interface EnderecoEntregaService {
     List<EnderecoEntrega> getAll();
 
     void save(EnderecoEntrega enderecoEntrega);
+
+    void delete(EnderecoEntrega enderecoEntrega);
 }

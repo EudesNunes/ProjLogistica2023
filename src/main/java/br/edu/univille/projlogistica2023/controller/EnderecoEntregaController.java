@@ -17,26 +17,35 @@ public class EnderecoEntregaController {
 
     @Autowired
     private EnderecoEntregaService service;
+
     @GetMapping
     public ModelAndView index() {
-       
+
         var listaEnderecoEntrega = service.getAll();
-        return new ModelAndView("enderecoentrega/index","listaEnderecoEntrega", listaEnderecoEntrega);
+        return new ModelAndView("enderecoentrega/index", "listaEnderecoEntrega", listaEnderecoEntrega);
     }
+
     @GetMapping("/novo")
-    public ModelAndView novo(){
+    public ModelAndView novo() {
         var novoEnderecoEntrega = new EnderecoEntrega();
-        return new ModelAndView ("enderecoentrega/form","enderecoEntrega", novoEnderecoEntrega);
+        return new ModelAndView("enderecoentrega/form", "enderecoEntrega", novoEnderecoEntrega);
     }
 
     @PostMapping
-    public ModelAndView save(EnderecoEntrega enderecoEntrega){
+    public ModelAndView save(EnderecoEntrega enderecoEntrega) {
         service.save(enderecoEntrega);
         return new ModelAndView("redirect:/enderecosentrega");
     }
 
     @GetMapping("alterar/{cdEnderecoEntrega}")
-    public ModelAndView alterar(@PathVariable("cdEnderecoEntrega") EnderecoEntrega enderecoEntrega){
-        return new ModelAndView ("enderecoentrega/form","enderecoEntrega",enderecoEntrega);
+    public ModelAndView alterar(@PathVariable("cdEnderecoEntrega") EnderecoEntrega enderecoEntrega) {
+        return new ModelAndView("enderecoentrega/form", "enderecoEntrega", enderecoEntrega);
+    }
+
+    @GetMapping("/remover/{cdEnderecoEntrega}")
+    public ModelAndView remover(
+            @PathVariable("cdEnderecoEntrega") EnderecoEntrega enderecoEntrega) {
+        service.delete(enderecoEntrega);
+        return new ModelAndView("redirect:/enderecosentrega");
     }
 }

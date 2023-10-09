@@ -8,4 +8,6 @@ public interface SituacaoService {
     List<Situacao> getAll();
 
     void save(Situacao situacao);
+
+    void delete(Situacao situacao);
 }

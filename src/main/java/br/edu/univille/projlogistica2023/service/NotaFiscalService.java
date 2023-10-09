@@ -9,4 +9,6 @@ public interface NotaFiscalService {
     List<NotaFiscal> getAll();
 
     void save(NotaFiscal notaFiscal);
+
+    void delete(NotaFiscal notafiscal);
 }
