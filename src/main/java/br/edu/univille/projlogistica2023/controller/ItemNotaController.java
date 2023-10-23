@@ -22,13 +22,13 @@ public class ItemNotaController {
     public ModelAndView index() {
 
         var listaItemNota = service.getAll();
-        return new ModelAndView("itemnota/index", "listaItemNota", listaItemNota);
+        return new ModelAndView("itemNota/index", "listaItemNota", listaItemNota);
     }
 
     @GetMapping("/novo")
     public ModelAndView novo() {
         var novoItemNota = new ItemNota();
-        return new ModelAndView("itemnota/form", "itemNota", novoItemNota);
+        return new ModelAndView("itemNota/form", "itemNota", novoItemNota);
     }
 
     @PostMapping
@@ -39,7 +39,7 @@ public class ItemNotaController {
 
     @GetMapping("alterar/{cdItemNota}")
     public ModelAndView alterar(@PathVariable("cdItemNota") ItemNota itemNota) {
-        return new ModelAndView("itemnota/form", "itemNota", itemNota);
+        return new ModelAndView("itemNota/form", "itemNota", itemNota);
     }
 
     @GetMapping("/remover/{cdItemNota}")
