@@ -22,13 +22,13 @@ public class NotaFiscalController {
     public ModelAndView index() {
 
         var listaNotasFiscal = service.getAll();
-        return new ModelAndView("notafiscal/index", "listaNotasFiscal", listaNotasFiscal);
+        return new ModelAndView("notaFiscal/index", "listaNotasFiscal", listaNotasFiscal);
     }
 
     @GetMapping("/novo")
     public ModelAndView novo() {
         var novoNotaFiscal = new NotaFiscal();
-        return new ModelAndView("notafiscal/form", "notafiscal", novoNotaFiscal);
+        return new ModelAndView("notaFiscal/form", "notafiscal", novoNotaFiscal);
     }
 
     @PostMapping
@@ -39,7 +39,7 @@ public class NotaFiscalController {
 
     @GetMapping("alterar/{cdNotaFiscal}")
     public ModelAndView alterar(@PathVariable("cdNotaFiscal") NotaFiscal notafiscal) {
-        return new ModelAndView("notafiscal/form", "notafiscal", notafiscal);
+        return new ModelAndView("notaFiscal/form", "notafiscal", notafiscal);
     }
 
     @GetMapping("/remover/{cdNotaFiscal}")

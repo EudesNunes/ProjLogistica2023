@@ -22,13 +22,13 @@ public class EnderecoEntregaController {
     public ModelAndView index() {
 
         var listaEnderecoEntrega = service.getAll();
-        return new ModelAndView("enderecoentrega/index", "listaEnderecoEntrega", listaEnderecoEntrega);
+        return new ModelAndView("enderecoEntrega/index", "listaEnderecoEntrega", listaEnderecoEntrega);
     }
 
     @GetMapping("/novo")
     public ModelAndView novo() {
         var novoEnderecoEntrega = new EnderecoEntrega();
-        return new ModelAndView("enderecoentrega/form", "enderecoEntrega", novoEnderecoEntrega);
+        return new ModelAndView("enderecoEntrega/form", "enderecoEntrega", novoEnderecoEntrega);
     }
 
     @PostMapping
@@ -39,7 +39,7 @@ public class EnderecoEntregaController {
 
     @GetMapping("alterar/{cdEnderecoEntrega}")
     public ModelAndView alterar(@PathVariable("cdEnderecoEntrega") EnderecoEntrega enderecoEntrega) {
-        return new ModelAndView("enderecoentrega/form", "enderecoEntrega", enderecoEntrega);
+        return new ModelAndView("enderecoEntrega/form", "enderecoEntrega", enderecoEntrega);
     }
 
     @GetMapping("/remover/{cdEnderecoEntrega}")

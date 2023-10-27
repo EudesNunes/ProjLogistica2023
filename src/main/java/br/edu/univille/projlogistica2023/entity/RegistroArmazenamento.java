@@ -27,9 +27,6 @@ public class RegistroArmazenamento {
 
     private String endereco;
 
-    @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
-    private Produto produto;
-
     public long getCdRegistro() {
         return cdRegistro;
     }
@@ -62,13 +59,7 @@ public class RegistroArmazenamento {
         this.endereco = endereco;
     }
 
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
+  
 
     
 }

@@ -29,25 +29,13 @@ $("#tabendereco").on("click", ".js-delete", function () {
   mostrarModal(botaoClicado, "#modalEndereco","/enderecosentrega");
 });
 
-$("#tabfornecedor").on("click", ".js-delete", function () {
-  let botaoClicado = $(this);
-  mostrarModal(botaoClicado, "#modalfornecedor","/fornecedores");
-});
-
-$("#tabitemnota").on("click", ".js-delete", function () {
-  let botaoClicado = $(this);
-  mostrarModal(botaoClicado, "#modalItemNota","itensnota");
-});
 
 $("#tabnotasfiscal").on("click", ".js-delete", function () {
   let botaoClicado = $(this);
-  mostrarModal(botaoClicado, "#modalNotaFiscal","notasfiscal");
+  mostrarModal(botaoClicado, "#modalNotaFiscal","notaFiscal");
 });
 
-$("#tabProdutos").on("click", ".js-delete", function () {
-  let botaoClicado = $(this);
-  mostrarModal(botaoClicado, "#modalProduto","produtos");
-});
+
 
 $("#tabregistros").on("click", ".js-delete", function () {
   let botaoClicado = $(this);
