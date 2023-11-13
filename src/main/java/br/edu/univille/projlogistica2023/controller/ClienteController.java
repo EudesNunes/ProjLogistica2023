@@ -1,6 +1,7 @@
 package br.edu.univille.projlogistica2023.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,17 +11,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.univille.projlogistica2023.entity.Cliente;
 import br.edu.univille.projlogistica2023.service.ClienteService;
-import br.edu.univille.projlogistica2023.service.EnderecoEntregaService;
+import br.edu.univille.projlogistica2023.service.EnderecoService;
 
 @Controller
 @RequestMapping("/clientes")
+@PreAuthorize("hasAuthority('APPROLE_Admin')")
 public class ClienteController {
 
     @Autowired
     private ClienteService service;
 
     @Autowired
-    private EnderecoEntregaService enderecoEntregaService;
+    private EnderecoService enderecoEntregaService;
 
     @GetMapping
     public ModelAndView index() {

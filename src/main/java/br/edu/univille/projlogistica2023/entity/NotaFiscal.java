@@ -28,7 +28,7 @@ public class NotaFiscal {
     private Cliente cliente;
 
     @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
-    private EnderecoEntrega enderecoEntrega;
+    private Endereco enderecoEntrega;
 
     public long getCdNotaFiscal() {
         return cdNotaFiscal;
@@ -62,11 +62,11 @@ public class NotaFiscal {
         this.cliente = cliente;
     }
 
-    public EnderecoEntrega getEnderecoEntrega() {
+    public Endereco getEnderecoEntrega() {
         return enderecoEntrega;
     }
 
-    public void setEnderecoEntrega(EnderecoEntrega enderecoEntrega) {
+    public void setEnderecoEntrega(Endereco enderecoEntrega) {
         this.enderecoEntrega = enderecoEntrega;
     }
 

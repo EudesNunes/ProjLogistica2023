@@ -21,7 +21,7 @@ public class Cliente {
     private String cpfCliente;
     @OneToMany
     @JoinColumn(name = "cdCliente")
-    private List<EnderecoEntrega> enderecoEntrega = 
+    private List<Endereco> enderecoEntrega = 
      new ArrayList<>();
      
     public long getCdCliente() {
@@ -54,10 +54,10 @@ public class Cliente {
     public void setCpfCliente(String cpfCliente) {
         this.cpfCliente = cpfCliente;
     }
-    public List<EnderecoEntrega> getEnderecoEntrega() {
+    public List<Endereco> getEnderecoEntrega() {
         return enderecoEntrega;
     }
-    public void setEnderecoEntrega(List<EnderecoEntrega> enderecoEntrega) {
+    public void setEnderecoEntrega(List<Endereco> enderecoEntrega) {
         this.enderecoEntrega = enderecoEntrega;
     }
 
