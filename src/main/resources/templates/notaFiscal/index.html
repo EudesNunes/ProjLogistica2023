@@ -17,7 +17,8 @@
               <th>Numero do Pedido</th>
 
               <th>Data do Faturamento</th>
-             
+              <th>Rementente</th>
+              <th>Destinatário</th>             
               <th>Alterar</th>
 
               <th>Excluir</th>
@@ -27,7 +28,20 @@
                 <td th:text="${umNotaFiscal.cdNotaFiscal}"></td>
                 <td th:text="${umNotaFiscal.numeroPedido}"></td>
                 <td th:text="${umNotaFiscal.dataFaturamento}"></td>
-            
+                <td>
+                  <ul>
+                      <li th:each="enderecos : ${umNotaFiscal.enderecoDestinatario}">
+                          <span th:text="${endereco.cdEnderecoEntrega + ' - ' + endereco.nomeDestinatario}"></span>
+                      </li>
+                  </ul>
+              </td>
+              <td>
+                <ul>
+                    <li th:each="enderecos : ${umNotaFiscal.enderecoRemetente}">
+                        <span th:text="${endereco.cdEnderecoEntrega + ' - ' + endereco.nomeDestinatario}"></span>
+                    </li>
+                </ul>
+            </td>
                 <td>
                   <a
                     class="btn btn-primary"

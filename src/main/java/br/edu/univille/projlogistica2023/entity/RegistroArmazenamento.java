@@ -23,7 +23,8 @@ public class RegistroArmazenamento {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date data;
 
-    private int quantidade;
+    @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
+    private NotaFiscal notaFiscal;
 
     private String endereco;
 
@@ -43,20 +44,21 @@ public class RegistroArmazenamento {
         this.data = data;
     }
 
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-
+    
     public String getEndereco() {
         return endereco;
     }
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public NotaFiscal getNotaFiscal() {
+        return notaFiscal;
+    }
+
+    public void setNotaFiscal(NotaFiscal notaFiscal) {
+        this.notaFiscal = notaFiscal;
     }
 
   

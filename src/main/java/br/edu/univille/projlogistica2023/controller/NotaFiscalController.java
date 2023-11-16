@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.univille.projlogistica2023.entity.NotaFiscal;
+import br.edu.univille.projlogistica2023.service.ClienteService;
+import br.edu.univille.projlogistica2023.service.EnderecoService;
 import br.edu.univille.projlogistica2023.service.NotaFiscalService;
 
 @Controller
@@ -20,18 +22,31 @@ public class NotaFiscalController {
 
     @Autowired
     private NotaFiscalService service;
-
+ @Autowired
+    private EnderecoService enderecoService;
+    @Autowired
+    private ClienteService clienteService;
     @GetMapping
     public ModelAndView index() {
 
         var listaNotasFiscal = service.getAll();
-        return new ModelAndView("notaFiscal/index", "listaNotasFiscal", listaNotasFiscal);
+        var listaEndereco = enderecoService.getAll();
+        ModelAndView modelAndView = new ModelAndView("notaFiscal/index", "listaNotasFiscal", listaNotasFiscal);
+        modelAndView.addObject("enderecos", listaEndereco);
+        return modelAndView;
     }
 
+    
     @GetMapping("/novo")
     public ModelAndView novo() {
         var novoNotaFiscal = new NotaFiscal();
-        return new ModelAndView("notaFiscal/form", "notafiscal", novoNotaFiscal);
+        var listaEndereco = enderecoService.getAll();
+        var listaClientes = clienteService.getAll();
+        ModelAndView modelAndView = new ModelAndView("notaFiscal/form", "notafiscal", novoNotaFiscal);
+        modelAndView.addObject("endereco", listaEndereco);
+        modelAndView.addObject("cliente", listaClientes);
+
+        return modelAndView;
     }
 
     @PostMapping

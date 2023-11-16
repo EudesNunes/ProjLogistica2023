@@ -28,6 +28,50 @@
               />
             </div>
           </div>
+          <div class="row">
+            <div class="col">
+              <label for="txtEnderecosRemetente">Rementente</label>
+              <select
+                class="form-select"
+                th:field="*{enderecoRemetente}"
+              >
+                <option
+                  th:each="Enderecores : ${endereco}"
+                  th:value="${Enderecores.cdEnderecoEntrega}"
+                  th:text="${Enderecores.nomeDestinatario}"
+                ></option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="txtEnderecosDestinatario"> Destinatário</label>
+              <select
+                class="form-select"
+                th:field="*{enderecoDestinatario}"
+              >
+                <option
+                  th:each="Enderecodes : ${endereco}"
+                  th:value="${Enderecodes.cdEnderecoEntrega}"
+                  th:text="${Enderecodes.nomeDestinatario}"
+                ></option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="cliente">Cliente Destinatario</label>
+              <select
+                class="form-select"
+                th:field="*{cliente}"
+              >
+                <option
+                  th:each="cliente : ${cliente}"
+                  th:value="${cliente.codCliente}"
+                  th:name="${cliente.nomeCliente}"
+                ></option>
+              </select>
+            </div>
+          </div>
+        </div>
            
 
         <div class="form-group my-3">
