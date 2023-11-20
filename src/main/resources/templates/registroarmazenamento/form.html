@@ -38,19 +38,7 @@
                 id="txtEndereco"
               />
             </div>
-            <div class="col">
-              <label for="txtProduto">Produto</label>
-              <select
-                class="form-select "
-                th:field="*{produto}"
-              >
-                <option
-                  th:each="produto : ${produtos}"
-                  th:value="${produto.cdProduto}"
-                  th:text="${produto.nomeProduto}"
-                ></option>
-              </select>
-            </div>
+           
         
           </div>
           <div class="row">
