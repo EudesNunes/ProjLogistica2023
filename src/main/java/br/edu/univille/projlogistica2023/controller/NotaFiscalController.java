@@ -22,17 +22,14 @@ public class NotaFiscalController {
 
     @Autowired
     private NotaFiscalService service;
- @Autowired
-    private EnderecoService enderecoService;
+;
     @Autowired
     private ClienteService clienteService;
     @GetMapping
     public ModelAndView index() {
 
         var listaNotasFiscal = service.getAll();
-        var listaEndereco = enderecoService.getAll();
-        ModelAndView modelAndView = new ModelAndView("notaFiscal/index", "listaNotasFiscal", listaNotasFiscal);
-        modelAndView.addObject("enderecos", listaEndereco);
+        ModelAndView modelAndView = new ModelAndView("notaFiscal/index", "notafiscal", listaNotasFiscal);
         return modelAndView;
     }
 
@@ -40,11 +37,9 @@ public class NotaFiscalController {
     @GetMapping("/novo")
     public ModelAndView novo() {
         var novoNotaFiscal = new NotaFiscal();
-        var listaEndereco = enderecoService.getAll();
         var listaClientes = clienteService.getAll();
         ModelAndView modelAndView = new ModelAndView("notaFiscal/form", "notafiscal", novoNotaFiscal);
-        modelAndView.addObject("endereco", listaEndereco);
-        modelAndView.addObject("cliente", listaClientes);
+        modelAndView.addObject("listaClientes", listaClientes);
 
         return modelAndView;
     }
@@ -57,7 +52,10 @@ public class NotaFiscalController {
 
     @GetMapping("alterar/{cdNotaFiscal}")
     public ModelAndView alterar(@PathVariable("cdNotaFiscal") NotaFiscal notafiscal) {
-        return new ModelAndView("notaFiscal/form", "notafiscal", notafiscal);
+        var listaClientes = clienteService.getAll();
+        ModelAndView modelAndView = new ModelAndView("notaFiscal/form", "notafiscal", notafiscal);
+        modelAndView.addObject("listaClientes", listaClientes);
+        return modelAndView;
     }
 
     @GetMapping("/remover/{cdNotaFiscal}")

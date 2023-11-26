@@ -24,21 +24,21 @@
               <th>Excluir</th>
             </tr>
             <tbody>
-              <tr class="text-center" th:each="umNotaFiscal : ${listaNotasFiscal}">
+              <tr class="text-center" th:each="umNotaFiscal : ${notafiscal}">
                 <td th:text="${umNotaFiscal.cdNotaFiscal}"></td>
                 <td th:text="${umNotaFiscal.numeroPedido}"></td>
                 <td th:text="${umNotaFiscal.dataFaturamento}"></td>
                 <td>
                   <ul>
-                      <li th:each="enderecos : ${umNotaFiscal.enderecoDestinatario}">
-                          <span th:text="${endereco.cdEnderecoEntrega + ' - ' + endereco.nomeDestinatario}"></span>
+                      <li th:each="clienteDestinatario : ${umNotaFiscal.clienteDestinatario}">
+                          <span th:text="${clienteDestinatario.cdCliente + ' - ' + clienteDestinatario.nomeCliente}"></span>
                       </li>
                   </ul>
               </td>
               <td>
                 <ul>
-                    <li th:each="enderecos : ${umNotaFiscal.enderecoRemetente}">
-                        <span th:text="${endereco.cdEnderecoEntrega + ' - ' + endereco.nomeDestinatario}"></span>
+                    <li th:each="clienteRemetente : ${umNotaFiscal.clienteRemetente}">
+                        <span th:text="${clienteRemetente.cdCliente + ' - ' + clienteRemetente.nomeCliente}"></span>
                     </li>
                 </ul>
             </td>
