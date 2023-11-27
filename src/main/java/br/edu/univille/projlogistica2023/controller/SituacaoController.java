@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.univille.projlogistica2023.entity.Situacao;
+import br.edu.univille.projlogistica2023.service.DacteService;
 import br.edu.univille.projlogistica2023.service.SituacaoService;
 
 @Controller
@@ -19,35 +20,64 @@ public class SituacaoController {
 
     @Autowired
     private SituacaoService service;
+    @Autowired
+    private DacteService DacteService;
 
     @GetMapping
     public ModelAndView index() {
-
-        var listaSituacoens = service.getAll();
-        return new ModelAndView("situacao/index", "listaSituacoens", listaSituacoens);
+        try {
+            var listaSituacoens = service.getAll();
+            return new ModelAndView("situacao/index", "listaSituacoens", listaSituacoens);
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
     }
 
     @GetMapping("/novo")
     public ModelAndView novo() {
-        var novoSituacao = new Situacao();
-        return new ModelAndView("situacao/form", "situacao", novoSituacao);
+        try {
+            var novoSituacao = new Situacao();
+            var listaDactes = DacteService.getAll();
+            ModelAndView modelAndView = new ModelAndView("situacao/form", "situacao", novoSituacao);
+            modelAndView.addObject("listDactes", listaDactes);
+            return modelAndView;
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
     }
 
     @PostMapping
     public ModelAndView save(Situacao situacao) {
-        service.save(situacao);
-        return new ModelAndView("redirect:/situacoens");
+        try {
+            service.save(situacao);
+            return new ModelAndView("redirect:/situacoens");
+        } catch (Exception e) {
+            ModelAndView modelAndView = new ModelAndView("situacao/form", "excecao",
+                    situacao);
+            var listaDactes = DacteService.getAll();
+            modelAndView.addObject("listDactes", listaDactes);
+            modelAndView.addObject("excecao", e.getMessage());
+            return modelAndView;
+        }
     }
 
     @GetMapping("alterar/{cdSituacao}")
     public ModelAndView alterar(@PathVariable("cdSituacao") Situacao situacao) {
-        return new ModelAndView("situacao/form", "situacao", situacao);
+        try {
+            return new ModelAndView("situacao/form", "situacao", situacao);
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
     }
 
     @GetMapping("/remover/{cdSituacao}")
     public ModelAndView remover(
             @PathVariable("cdSituacao") Situacao situacao) {
-        service.delete(situacao);
-        return new ModelAndView("redirect:/registrosarmazenamento");
+        try {
+            service.delete(situacao);
+            return new ModelAndView("redirect:/registrosarmazenamento");
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
     }
 }

@@ -3,11 +3,13 @@ package br.edu.univille.projlogistica2023.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -19,10 +21,8 @@ public class Cliente {
     private String telefoneCliente;
     private String emailCliente;
     private String cpfCliente;
-    @OneToMany
-    @JoinColumn(name = "cdCliente")
-    private List<Endereco> enderecoEntrega = 
-     new ArrayList<>();
+    @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
+    private Endereco enderecoEntrega;
      
     public long getCdCliente() {
         return cdCliente;
@@ -54,10 +54,10 @@ public class Cliente {
     public void setCpfCliente(String cpfCliente) {
         this.cpfCliente = cpfCliente;
     }
-    public List<Endereco> getEnderecoEntrega() {
+    public Endereco getEnderecoEntrega() {
         return enderecoEntrega;
     }
-    public void setEnderecoEntrega(List<Endereco> enderecoEntrega) {
+    public void setEnderecoEntrega(Endereco enderecoEntrega) {
         this.enderecoEntrega = enderecoEntrega;
     }
 

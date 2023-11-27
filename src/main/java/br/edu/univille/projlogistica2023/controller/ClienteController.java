@@ -26,42 +26,64 @@ public class ClienteController {
 
     @GetMapping
     public ModelAndView index() {
-
-        var listaClientes = service.getAll();
-        return new ModelAndView("cliente/index", "listaClientes", listaClientes);
+        try {
+            var listaClientes = service.getAll();
+            return new ModelAndView("cliente/index", "listaClientes", listaClientes);
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
     }
 
     @GetMapping("/novo")
     public ModelAndView novo() {
-        var novoCliente = new Cliente();
-        var listaEnderecoEntrega = enderecoEntregaService.getAll();
-        ModelAndView modelAndView = new ModelAndView("cliente/form", "cliente", novoCliente);
-        modelAndView.addObject("EnderecosEntrega", listaEnderecoEntrega);
+        try {
 
-        return modelAndView;
+            var novoCliente = new Cliente();
+            var listaEnderecoEntrega = enderecoEntregaService.getAll();
+            ModelAndView modelAndView = new ModelAndView("cliente/form", "cliente", novoCliente);
+            modelAndView.addObject("EnderecosEntrega", listaEnderecoEntrega);
+            return modelAndView;
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
     }
 
     @PostMapping
     public ModelAndView save(Cliente cliente) {
-        service.save(cliente);
-        return new ModelAndView("redirect:/clientes");
+        try {
+            service.save(cliente);
+            return new ModelAndView("redirect:/clientes");
+        } catch (Exception e) {
+            var listaEnderecoEntrega = enderecoEntregaService.getAll();
+            ModelAndView modelAndView = new ModelAndView("cliente/form", "cliente", cliente);
+            modelAndView.addObject("EnderecosEntrega", listaEnderecoEntrega);
+            modelAndView.addObject("excecao", e.getMessage());
+            return modelAndView;
+        }
     }
 
     @GetMapping("alterar/{cdCliente}")
     public ModelAndView alterar(@PathVariable("cdCliente") Cliente cliente) {
-        var listaEnderecoEntrega = enderecoEntregaService.getAll();
+        try {
+            var listaEnderecoEntrega = enderecoEntregaService.getAll();
+            ModelAndView modelAndView = new ModelAndView("cliente/form", "cliente", cliente);
+            modelAndView.addObject("EnderecosEntrega", listaEnderecoEntrega);
+            return modelAndView;
 
-        ModelAndView modelAndView = new ModelAndView("cliente/form", "cliente", cliente);
-        modelAndView.addObject("EnderecosEntrega", listaEnderecoEntrega);
-
-        return modelAndView;
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
     }
 
     @GetMapping("/remover/{cdCliente}")
     public ModelAndView remover(
-        @PathVariable("cdCliente") Cliente cliente) {
+            @PathVariable("cdCliente") Cliente cliente) {
+        try {
             service.delete(cliente);
-        return new ModelAndView("redirect:/clientes");
+            return new ModelAndView("redirect:/clientes");
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
     }
-        
+
 }

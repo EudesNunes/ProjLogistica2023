@@ -21,7 +21,7 @@
 
                 <th>Data</th>
 
-                <th>Quantidade</th>
+                <th>Nota Fiscal</th>
 
                 <th>Endereço</th>
 
@@ -37,7 +37,13 @@
                 >
                   <td th:text="${umRegistro.cdRegistro}"></td>
                   <td th:text="${umRegistro.data}"></td>
-                  <td th:text="${umRegistro.quantidade}"></td>
+                  <td>
+                    <ul>
+                        <li th:each="notaFiscal : ${umRegistro.notaFiscal}">
+                            <span th:text="${notaFiscal.cdNotaFiscal + ' - ' + notaFiscal.numeroPedido}"></span>
+                        </li>
+                    </ul>
+                </td>
                   <td th:text="${umRegistro.endereco}"></td>
                
                   <td>

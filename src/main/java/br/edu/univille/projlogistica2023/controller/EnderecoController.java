@@ -22,32 +22,53 @@ public class EnderecoController {
 
     @GetMapping
     public ModelAndView index() {
-
-        var listaEnderecoEntrega = service.getAll();
-        return new ModelAndView("endereco/index", "listaEnderecoEntrega", listaEnderecoEntrega);
+        try {
+            var listaEnderecoEntrega = service.getAll();
+            return new ModelAndView("endereco/index", "listaEnderecoEntrega", listaEnderecoEntrega);
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
     }
 
     @GetMapping("/novo")
     public ModelAndView novo() {
-        var novoEnderecoEntrega = new Endereco();
-        return new ModelAndView("endereco/form", "enderecoEntrega", novoEnderecoEntrega);
+        try {
+            var novoEnderecoEntrega = new Endereco();
+            return new ModelAndView("endereco/form", "enderecoEntrega", novoEnderecoEntrega);
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
     }
 
     @PostMapping
     public ModelAndView save(Endereco enderecoEntrega) {
-        service.save(enderecoEntrega);
-        return new ModelAndView("redirect:/enderecosentrega");
+        try {
+            service.save(enderecoEntrega);
+            return new ModelAndView("redirect:/enderecosentrega");
+        } catch (Exception e) {
+            ModelAndView modelAndView = new ModelAndView("endereco/form", "enderecoEntrega", enderecoEntrega);
+            modelAndView.addObject("excecao", e.getMessage());
+            return modelAndView;
+        }
     }
 
     @GetMapping("alterar/{cdEnderecoEntrega}")
     public ModelAndView alterar(@PathVariable("cdEnderecoEntrega") Endereco enderecoEntrega) {
-        return new ModelAndView("endereco/form", "enderecoEntrega", enderecoEntrega);
+        try {
+            return new ModelAndView("endereco/form", "enderecoEntrega", enderecoEntrega);
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
     }
 
     @GetMapping("/remover/{cdEnderecoEntrega}")
     public ModelAndView remover(
             @PathVariable("cdEnderecoEntrega") Endereco enderecoEntrega) {
-        service.delete(enderecoEntrega);
-        return new ModelAndView("redirect:/enderecosentrega");
+        try {
+            service.delete(enderecoEntrega);
+            return new ModelAndView("redirect:/enderecosentrega");
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
     }
 }

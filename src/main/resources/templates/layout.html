@@ -13,129 +13,141 @@
       rel="stylesheet"
       th:href="@{/webjars/jquery-ui/1.13.2/jquery-ui.css}"
     />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
     <link rel="stylesheet" th:href="@{/site.css}" />
   </head>
   <body>
     <nav th:fragment="menu" class="navbar navbar-dark bg-dark bg-body-tertiary">
-      <div class="container-fluid ">
+      <div class="container-fluid">
         <div>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasDarkNavbar"
-          aria-controls="offcanvasDarkNavbar"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand mx-2" href="/">
-          <img
-            th:src="@{/icons/tartaruga.png}"
-            alt="Logo"
-            width="40"
-            height="34"
-            class="d-inline-block align-text-top"
-          />
-          Tartaruga Transportes</a
-        >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasDarkNavbar"
+            aria-controls="offcanvasDarkNavbar"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand mx-2" href="/">
+            <img
+              th:src="@{/icons/tartaruga.png}"
+              alt="Logo"
+              width="40"
+              height="34"
+              class="d-inline-block align-text-top"
+            />
+            Tartaruga Transportes</a
+          >
 
-        <div
-          class="offcanvas offcanvas-start text-bg-dark "
-          tabindex="-1"
-          id="offcanvasDarkNavbar"
-          aria-labelledby="offcanvasDarkNavbarLabel"
-        >
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
-              Tartaruga Transportes
-            </h5>
-            <button
-              type="button"
-              class="btn-close btn-close-white"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-            ></button>
-          </div>
+          <div
+            class="offcanvas offcanvas-start text-bg-dark"
+            tabindex="-1"
+            id="offcanvasDarkNavbar"
+            aria-labelledby="offcanvasDarkNavbarLabel"
+          >
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
+                Tartaruga Transportes
+              </h5>
+              <button
+                type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
 
-          <div class="offcanvas-body bg-dark">
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li
-                class="nav-item active"
-                sec:authorize="hasAuthority('APPROLE_admin')"
-              >
-                <a class="nav-link" href="/">Home</a>
-              </li>
-
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
+            <div class="offcanvas-body bg-dark">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li
+                  class="nav-item active"
+                  sec:authorize="hasAuthority('APPROLE_admin')"
                 >
-                  Cadastros
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li
-                    class="nav-item active"
-                    sec:authorize="hasAuthority('APPROLE_admin')"
-                  >
-                    <a class="nav-link" href="/clientes">Clientes</a>
-                  </li>
-                  <li
-                    class="nav-item active"
-                    sec:authorize="hasAuthority('APPROLE_admin')"
-                  >
-                    <a class="nav-link" href="/dactes">Dacte</a>
-                  </li>
-                  <li
-                    class="nav-item active"
-                    sec:authorize="hasAuthority('APPROLE_admin')"
-                  >
-                    <a class="nav-link" href="/enderecosentrega"
-                      >Endereço de Entrega</a
-                    >
-                  </li>
+                  <a class="nav-link" href="/">Home</a>
+                </li>
 
-                  <li
-                    class="nav-item active"
-                    sec:authorize="hasAuthority('APPROLE_admin')"
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
                   >
-                    <a class="nav-link" href="/notasfiscal">Nota Fiscal</a>
-                  </li>
-
-                  <li
-                    class="nav-item active"
-                    sec:authorize="hasAuthority('APPROLE_admin')"
-                  >
-                    <a class="nav-link" href="/registrosarmazenamento"
-                      >Registro de Armarzenamento</a
+                    Cadastros
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark">
+                    <li
+                      class="nav-item active"
+                      sec:authorize="hasAuthority('APPROLE_admin')"
                     >
-                  </li>
-                  <li
-                    class="nav-item active"
-                    sec:authorize="hasAuthority('APPROLE_admin')"
-                  >
-                    <a class="nav-link" href="/situacoens">Situação</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
+                      <a class="nav-link" href="/enderecosentrega"
+                        >Endereço de Entrega</a
+                      >
+                    </li>
+                    <li
+                      class="nav-item active"
+                      sec:authorize="hasAuthority('APPROLE_admin')"
+                    >
+                      <a class="nav-link" href="/clientes">Clientes</a>
+                    </li>
+                    <li
+                      class="nav-item active"
+                      sec:authorize="hasAuthority('APPROLE_admin')"
+                    >
+                      <a class="nav-link" href="/notasfiscal">Nota Fiscal</a>
+                    </li>
+                    <li
+                      class="nav-item active"
+                      sec:authorize="hasAuthority('APPROLE_admin')"
+                    >
+                      <a class="nav-link" href="/registrosarmazenamento"
+                        >Registro de Armarzenamento</a
+                      >
+                    </li>
+                    <li
+                      class="nav-item active"
+                      sec:authorize="hasAuthority('APPROLE_admin')"
+                    >
+                      <a class="nav-link" href="/dactes">Dacte</a>
+                    </li>
+
+                    <li
+                      class="nav-item active"
+                      sec:authorize="hasAuthority('APPROLE_admin')"
+                    >
+                      <a class="nav-link" href="/situacoens">Situação</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
         <div class="nav-item">
-          <form class="d-flex"  role="search">
-            <a class="navbar-brand mx-2" href="/logout" style="justify-content: center; align-items: center; text-align: center;display: flex;">
+          <form class="d-flex" role="search">
+            <a
+              class="navbar-brand mx-2"
+              href="/logout"
+              style="
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                display: flex;
+              "
+            >
               <span class="material-symbols-outlined"> logout </span>Sair</a
             >
           </form>
         </div>
       </div>
     </nav>
+
     <!-- <nav th:fragment="menu" class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">

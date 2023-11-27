@@ -25,10 +25,7 @@ public class Situacao {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date previsaoEntrega;
-    private EnumStatus status;
-
-     @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
-    private NotaFiscal notaFiscal;
+    private EnumStatus status;  
     @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
     private Dacte dacte;
     public Dacte getDacte() {

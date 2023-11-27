@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.univille.projlogistica2023.entity.RegistroArmazenamento;
+import br.edu.univille.projlogistica2023.service.NotaFiscalService;
 import br.edu.univille.projlogistica2023.service.RegistroArmazenamentoService;
 
 @Controller
@@ -19,43 +20,72 @@ public class RegistroArmazenamentoController {
 
     @Autowired
     private RegistroArmazenamentoService service;
+    @Autowired
+    private NotaFiscalService NotaFiscalservice;;
 
-   
     @GetMapping
     public ModelAndView index() {
-
-        var listaRegistrosArmazenamento = service.getAll();
-        return new ModelAndView("registroarmazenamento/index", "listaRegistrosArmazenamento",
-                listaRegistrosArmazenamento);
+        try {
+            var listaRegistrosArmazenamento = service.getAll();
+            return new ModelAndView("registroarmazenamento/index", "listaRegistrosArmazenamento",
+                    listaRegistrosArmazenamento);
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
     }
 
     @GetMapping("/novo")
     public ModelAndView novo() {
-        var novoRegistroArmazenamento = new RegistroArmazenamento();
-        ModelAndView modelAndView = new ModelAndView("registroarmazenamento/form", "novoRegistroArmazenamento",
-                novoRegistroArmazenamento);
-        return modelAndView;
+        try {
+            var ListaNotaFiscal = NotaFiscalservice.getAll();
+
+            var novoRegistroArmazenamento = new RegistroArmazenamento();
+            ModelAndView modelAndView = new ModelAndView("registroarmazenamento/form", "novoRegistroArmazenamento",
+                    novoRegistroArmazenamento);
+            modelAndView.addObject("listanotaFiscal", ListaNotaFiscal);
+
+            return modelAndView;
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
 
     }
 
     @PostMapping
     public ModelAndView save(RegistroArmazenamento registroArmazenamento) {
-        service.save(registroArmazenamento);
-        return new ModelAndView("redirect:/registrosarmazenamento");
+        try {
+            service.save(registroArmazenamento);
+            return new ModelAndView("redirect:/registrosarmazenamento");
+        } catch (Exception e) {
+            ModelAndView modelAndView = new ModelAndView("registroarmazenamento/form", "novoRegistroArmazenamento",
+                    registroArmazenamento);
+            var ListaNotaFiscal = NotaFiscalservice.getAll();
+            modelAndView.addObject("listanotaFiscal", ListaNotaFiscal);
+            modelAndView.addObject("excecao", e.getMessage());
+            return modelAndView;
+        }
     }
 
     @GetMapping("alterar/{cdRegistro}")
     public ModelAndView alterar(@PathVariable("cdRegistro") RegistroArmazenamento registroArmazenamento) {
-        ModelAndView modelAndView = new ModelAndView("registroarmazenamento/form", "novoRegistroArmazenamento",
-                registroArmazenamento);
+        try {
+            ModelAndView modelAndView = new ModelAndView("registroarmazenamento/form", "novoRegistroArmazenamento",
+                    registroArmazenamento);
 
-        return modelAndView;
+            return modelAndView;
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
     }
 
     @GetMapping("/remover/{cdRegistro}")
     public ModelAndView remover(
             @PathVariable("cdRegistro") RegistroArmazenamento registroArmazenamento) {
-        service.delete(registroArmazenamento);
-        return new ModelAndView("redirect:/registrosarmazenamento");
+        try {
+            service.delete(registroArmazenamento);
+            return new ModelAndView("redirect:/registrosarmazenamento");
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
     }
 }

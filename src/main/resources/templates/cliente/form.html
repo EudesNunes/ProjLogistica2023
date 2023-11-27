@@ -4,6 +4,34 @@
   <body>
     <nav th:replace="layout :: menu">(menu)</nav>
     <main class="container">
+      <div
+      id="toast-container"
+      aria-live="polite"
+      aria-atomic="true"
+      class="position-absolute end-0 bottom-0"
+    >
+      <div class="toast-container top-0 end-0 p-3">
+        <div
+          class="toast align-items-center text-white bg-danger border-0"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
+          <div class="d-flex">
+            <div class="toast-body">
+              <span th:text="${excecao}"></span>
+            </div>
+            <button
+              type="button"
+              class="btn-close btn-close-white me-2 m-auto"
+              data-bs-dismiss="toast"
+              aria-label="Close"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
       <form th:action="@{/clientes}" method="POST" th:object="${cliente}">
         <input type="hidden" th:field="*{cdCliente}" />
 
@@ -49,12 +77,11 @@
               />
             </div>
           </div>
-          <div class="row">
+          <div class="row">          
             <div class="col">
-              <label for="txtEnderecosEntrega">Endereços de Entrega</label>
+              <label for="txtEnderecosEntrega">Endereco</label>
               <select
                 class="form-select"
-                multiple
                 th:field="*{enderecoEntrega}"
               >
                 <option
@@ -73,3 +100,12 @@
     <div th:include="layout :: footer">(footer)</div>
   </body>
 </html>
+
+<script th:if="${not #strings.isEmpty(excecao)}">
+  // JavaScript para ativar o Toast se houver uma mensagem de erro
+  document.addEventListener("DOMContentLoaded", function () {
+    var myToast = new bootstrap.Toast(document.querySelector(".toast"));
+    myToast.show();
+  });
+ 
+</script>

@@ -25,38 +25,61 @@ public class DacteController {
 
     @GetMapping
     public ModelAndView index() {
-
-        var listaDactes = service.getAll();
-        return new ModelAndView("dacte/index", "listaDactes", listaDactes);
+        try {
+            var listaDactes = service.getAll();
+            return new ModelAndView("dacte/index", "listaDactes", listaDactes);
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
     }
 
     @GetMapping("/novo")
     public ModelAndView novo() {
-        var novoDacte = new Dacte();
-        var ListaNotaFiscal = notaFiscalService.getAll();
-        ModelAndView modelAndView = new ModelAndView("dacte/form", "dacte", novoDacte);
-        modelAndView.addObject("LNotaFiscal", ListaNotaFiscal);
-        return modelAndView;
+        try {
+            var novoDacte = new Dacte();
+            var ListaNotaFiscal = notaFiscalService.getAll();
+            ModelAndView modelAndView = new ModelAndView("dacte/form", "dacte", novoDacte);
+            modelAndView.addObject("LNotaFiscal", ListaNotaFiscal);
+            return modelAndView;
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
     }
 
     @PostMapping
     public ModelAndView save(Dacte dacte) {
-        service.save(dacte);
-        return new ModelAndView("redirect:/dactes");
+        try {
+            service.save(dacte);
+            return new ModelAndView("redirect:/dactes");
+        } catch (Exception e) {
+            var ListaNotaFiscal = notaFiscalService.getAll();
+            ModelAndView modelAndView = new ModelAndView("dacte/form", "dacte", dacte);
+            modelAndView.addObject("LNotaFiscal", ListaNotaFiscal);
+            modelAndView.addObject("excecao", e.getMessage());
+            return modelAndView;
+        }
     }
 
     @GetMapping("alterar/{cdDacte}")
     public ModelAndView alterar(@PathVariable("cdDacte") Dacte dacte) {
-        var ListaNotaFiscal = notaFiscalService.getAll();
-        ModelAndView modelAndView = new ModelAndView("dacte/form", "dacte", dacte);
-        modelAndView.addObject("LNotaFiscal", ListaNotaFiscal);
-        return modelAndView;
+        try {
+            var ListaNotaFiscal = notaFiscalService.getAll();
+            ModelAndView modelAndView = new ModelAndView("dacte/form", "dacte", dacte);
+            modelAndView.addObject("LNotaFiscal", ListaNotaFiscal);
+            return modelAndView;
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
     }
 
     @GetMapping("/remover/{cdDacte}")
     public ModelAndView remover(
             @PathVariable("cdDacte") Dacte dacte) {
-        service.delete(dacte);
-        return new ModelAndView("redirect:/dactes");
+        try {
+            service.delete(dacte);
+            return new ModelAndView("redirect:/dactes");
+        } catch (Exception e) {
+            return new ModelAndView("home/index", "excecao", e.getMessage());
+        }
     }
 }

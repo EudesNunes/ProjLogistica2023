@@ -19,6 +19,8 @@
               <tr class="table-dark text-center">
                 <th>Código</th>
 
+                <th>Dacte </th>
+
                 <th>Data de Atualização</th>
 
                 <th>Previsão de Entrega</th>
@@ -34,6 +36,13 @@
                   class="text-center"
                   th:each="umSituacao : ${listaSituacoens}"
                 >
+                <td>
+                  <ul>
+                      <li th:each="dact : ${umSituacao.dacte}">
+                          <span th:text="${dact.cdDacte + ' - ' + dact.numeroDacte}"></span>
+                      </li>
+                  </ul>
+              </td>
                   <td th:text="${umSituacao.cdSituacao}"></td>
                   <td th:text="${umSituacao.dataAtualizacao}"></td>
                   <td th:text="${umSituacao.previsaoEntrega}"></td>
