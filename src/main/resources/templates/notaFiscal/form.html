@@ -32,8 +32,9 @@
       </div>
     </div>
 
-      <form th:action="@{/notasfiscal}" method="POST" th:object="${notafiscal}">
+      <form th:action="@{/notasfiscal}" method="POST" th:object="${notafiscal}"  class="text-center">
         <input type="hidden" th:field="*{cdNotaFiscal}" />
+        <h3 style="padding-top: 10px;">Cadastro de Nota Fiscal</h3>
 
         <div class="my-3 form-group">
           <div class="row">

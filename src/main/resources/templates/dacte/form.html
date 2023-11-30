@@ -32,8 +32,9 @@
         </div>
       </div>
 
-      <form th:action="@{/dactes}" method="POST" th:object="${dacte}">
+      <form th:action="@{/dactes}" method="POST" th:object="${dacte}" class="text-center">
         <input type="hidden" th:field="*{cdDacte}" />
+        <h3 style="padding-top: 10px;">Cadastro do Dacte</h3>
 
         <div class="my-3 form-group">
           <div class="row">

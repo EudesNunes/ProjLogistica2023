@@ -11,6 +11,7 @@
       class="position-absolute end-0 bottom-0"
     >
       <div class="toast-container top-0 end-0 p-3">
+        
         <div
           class="toast align-items-center text-white bg-danger border-0"
           role="alert"
@@ -32,9 +33,9 @@
       </div>
     </div>
 
-      <form th:action="@{/situacoens}" method="POST" th:object="${situacao}">
+      <form th:action="@{/situacoens}" method="POST" th:object="${situacao}" class="text-center">
         <input type="hidden" th:field="*{cdSituacao}" />
-
+        <h3 style="padding-top: 10px;">Cadastro de situação</h3>
         <div class="my-3 form-group">
           <div class="row">
             <div class="col">

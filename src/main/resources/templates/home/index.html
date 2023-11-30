@@ -3,7 +3,7 @@
   <head th:include="layout :: htmlhead"></head>
   <body>
     <nav th:replace="layout :: menu">(menu)</nav>
-    <main >
+    <main>
       <div
         id="toast-container"
         aria-live="polite"
@@ -32,21 +32,87 @@
         </div>
       </div>
 
-      <div class="container " style="">
-        <h1>Home</h1>
-        <div class="card" style="width: 18rem;">
-          <img src="icons\mapa.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Endereço</h5>
-            <p class="card-text"></p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+      <div class="container text-center" style="">
+        <h1>Sua entrega no tempo necessário</h1>
+        <div class="card card-group align-items-center row" style="padding: 5px">
+          <div class="card col-sm-2" >
+            <img src="icons\mapa.png" class="card-img-top" alt="..." />
+            <div class="card-body text-center">
+              <h5 class="card-title text-center">Endereço</h5>
+              <p class="card-text"></p>
+              <a href="/enderecosentrega" class="btn btn-secondary">lista</a>
+              <a href="/enderecosentrega/novo" class="btn btn-success"
+                >Cadastrar</a
+              >
+            </div>
           </div>
-        </div>
-        
+          <div class="card col-sm-2" >
+            <img src="icons\cliente.png" class="card-img-top" alt="..." />
+            <div class="card-body text-center">
+              <h5 class="card-title text-center">Cliente</h5>
+              <p class="card-text"></p>
+              <a href="/clientes" class="btn btn-secondary">lista</a>
+              <a href="/clientes/novo" class="btn btn-success"
+                >Cadastrar</a
+              >
+            </div>
+          </div>
+
+          <div class="card col-sm-2" >
+            <img src="icons\notafiscal.png" class="card-img-top" alt="..." />
+            <div class="card-body text-center">
+              <h5 class="card-title text-center">Nota Fiscal</h5>
+              <p class="card-text"></p>
+              <a href="/notasfiscal" class="btn btn-secondary">lista</a>
+              <a href="/notasfiscal/novo" class="btn btn-success"
+                >Cadastrar</a
+              >
+            </div>
+          </div>
+
+          <div class="card col-sm-2" >
+            <img src="icons\registro.png" class="card-img-top" alt="..." />
+            <div class="card-body text-center">
+              <h5 class="card-title text-center"> Amarzenamento</h5>
+              <p class="card-text"></p>
+              <a href="/registrosarmazenamento" class="btn btn-secondary">lista</a>
+              <a href="/registrosarmazenamento/novo" class="btn btn-success"
+                >Cadastrar</a
+              >
+            </div>
+          </div>
           
+          <div class="card col-sm-2" >
+            <img src="icons\dacte.png" class="card-img-top" alt="..." />
+            <div class="card-body text-center">
+              <h5 class="card-title text-center">Dacte</h5>
+              <p class="card-text"></p>
+              <a href="/dactes" class="btn btn-secondary">lista</a>
+              <a href="/dactes/novo" class="btn btn-success"
+                >Cadastrar</a
+              >
+            </div>
+          </div>
+         
+          
+          <div class="card col-sm-2" >
+            <img src="icons\situacao.png" class="card-img-top" alt="..." />
+            <div class="card-body text-center">
+              <h5 class="card-title text-center">Situação</h5>
+              <p class="card-text"></p>
+              <a href="/situacoens" class="btn btn-secondary">lista</a>
+              <a href="/situacoens/novo" class="btn btn-success"
+                >Cadastrar</a
+              >
+            </div>
+          </div>
+         
+        </div>
+       
+       
+      </div>
       </div>
     </main>
-    
 
     <div th:include="layout :: footer">(footer)</div>
   </body>
@@ -57,5 +123,4 @@
     var myToast = new bootstrap.Toast(document.querySelector(".toast"));
     myToast.show();
   });
- 
 </script>

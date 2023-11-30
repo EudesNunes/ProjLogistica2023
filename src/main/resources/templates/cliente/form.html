@@ -32,8 +32,9 @@
       </div>
     </div>
     
-      <form th:action="@{/clientes}" method="POST" th:object="${cliente}">
+      <form th:action="@{/clientes}" method="POST" th:object="${cliente}" class="text-center">
         <input type="hidden" th:field="*{cdCliente}" />
+        <h3 style="padding-top: 10px;">Cadastro do Cliente</h3>
 
         <div class="my-3 form-group">
           <div class="row">

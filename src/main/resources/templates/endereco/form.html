@@ -37,8 +37,10 @@
         th:action="@{/enderecosentrega}"
         method="POST"
         th:object="${enderecoEntrega}"
+        class="text-center"
       >
-        <input type="hidden" th:field="*{cdEnderecoEntrega}" />
+        <input type="hidden" th:field="*{cdEnderecoEntrega}"  />
+        <h3 style="padding-top: 10px;">Cadastro do Endereço</h3>
 
         <div class="my-3 form-group">
           <div class="row">
